@@ -1,6 +1,12 @@
+import argparse
 from datetime import datetime
 from HTMLParser import HTMLParser
 import urllib2
+
+parser = argparse.ArgumentParser(description="A script for checking a day's \
+                                              commits on GitHub.")
+parser.add_argument("--github", help="GitHub username of the user you would like to \
+                                    inspect.")
 
 
 class RectParser(HTMLParser):
@@ -12,7 +18,8 @@ class RectParser(HTMLParser):
             if (date[1] == datestring):
                 print attrs[5][1]
 
-response = urllib2.urlopen("https://github.com/stevex86")
+args = parser.parse_args()
+response = urllib2.urlopen("https://github.com/{}".format(args.github))
 html = response.read()
 parser = RectParser()
 parser.feed(html)
