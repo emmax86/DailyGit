@@ -24,10 +24,7 @@ class RectParser(HTMLParser):
                 datething = datetime.strptime(args.date, "%Y-%m-%d")
                 datestring = datething.strftime("%Y-%m-%d")
             if (date[1] == datestring):
-                if attrs[5][1] != "":
-                    print attrs[5][1]
-                else:
-                    print "Could not retrieve amount of commits."
+                print attrs[5][1]
 
 args = parser.parse_args()
 response = urllib2.urlopen("https://github.com/{}".format(args.github))
