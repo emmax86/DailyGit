@@ -1,3 +1,4 @@
+#!/usr/local/bin/python
 import argparse
 from datetime import datetime
 from HTMLParser import HTMLParser
@@ -5,8 +6,9 @@ import urllib2
 
 parser = argparse.ArgumentParser(description="A script for checking a day's \
                                               commits on GitHub.")
-parser.add_argument("--github", help="GitHub username of the user you would like to \
-                                    inspect.")
+parser.add_argument("--github",
+                    help="GitHub username of the user you would like to inspect.",
+                    required=True)
 
 
 class RectParser(HTMLParser):
