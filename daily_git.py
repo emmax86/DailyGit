@@ -9,14 +9,20 @@ parser = argparse.ArgumentParser(description="A script for checking a day's \
 parser.add_argument("--github",
                     help="GitHub username of the user you would like to inspect.",
                     required=True)
+parser.add_argument("--date", help="Date to analyze")
 
 
 class RectParser(HTMLParser):
     def handle_starttag(self, tag, attrs):
         if tag == 'rect':
             date = attrs[6]
-            date_today = datetime.now().date()
-            datestring = date_today.strftime("%Y-%m-%d")
+            datestring = ""
+            if args.date is None:
+                date_today = datetime.now().date()
+                datestring = date_today.strftime("%Y-%m-%d")
+            else:
+                datething = datetime.strptime(args.date, "%Y-%m-%d")
+                datestring = datething.strftime("%Y-%m-%d")
             if (date[1] == datestring):
                 print attrs[5][1]
 
